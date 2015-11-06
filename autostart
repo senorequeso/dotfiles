@@ -1,0 +1,52 @@
+#
+# These things are run when an Openbox X Session is started.
+# You may place a similar script in $HOME/.config/openbox/autostart
+# to run user-specific things.
+#
+
+# If you want to use GNOME config tools...
+#
+#if test -x /usr/lib/openbox/gnome-settings-daemon >/dev/null; then
+#  /usr/lib/openbox/gnome-settings-daemon &
+#elif which gnome-settings-daemon >/dev/null 2>&1; then
+#  gnome-settings-daemon &
+#fi
+
+## Start Thunar Daemon
+thunar --daemon &
+
+sleep 2s &&
+#if egrep -iq 'trackpad' /proc/bus/input/devices; then
+#	synclient VertEdgeScroll=0 &
+#	synclient HorizTwoFingerScroll=1 &
+#	synclient AreaRightEdge=850 &
+#	synclient AreaLeftEdge=50 &
+#	synclient TapButton1=1 &
+#	synclient TapButton2=3 &
+#	synclient TapButton3=2 &
+#	synclient FingerHigh=10 &
+#	synclient FingerLow=10 &
+#	synclient MaxTapMove=20 &
+#fi
+
+## Group start:
+## 1. nitrogen - restores wallpaper
+## 2. compositor - start
+## 3. sleep - give compositor time to start
+## 4. tint2 panel
+## cb-compositor --start && \
+(\
+nitrogen --restore && \
+sleep 2s && \
+tint2 \
+) &
+
+nitrogen --restore &
+volumeicon &
+## cbatticon &
+## conky &
+sleep 1s &
+xcompmgr &
+sh /home/daniel/Desktop/trackpad.sh &
+gnome-screensaver &
+tint2 &
