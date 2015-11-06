@@ -9,6 +9,7 @@
 alias ls='ls --color=auto'
 alias cls='clear'
 alias arnoldc='sh /home/daniel/.scripts/arnoldc/run.sh'
+alias xup="xrdb ~/.Xresources"
 
 export EDITOR="vim"
 export TERM="screen-256color"
