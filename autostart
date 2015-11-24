@@ -14,8 +14,8 @@
 
 ## Start Thunar Daemon
 thunar --daemon &
-
 sleep 2s &&
+
 #if egrep -iq 'trackpad' /proc/bus/input/devices; then
 #	synclient VertEdgeScroll=0 &
 #	synclient HorizTwoFingerScroll=1 &
@@ -29,24 +29,16 @@ sleep 2s &&
 #	synclient MaxTapMove=20 &
 #fi
 
-## Group start:
-## 1. nitrogen - restores wallpaper
-## 2. compositor - start
-## 3. sleep - give compositor time to start
-## 4. tint2 panel
-## cb-compositor --start && \
-(\
-nitrogen --restore && \
-sleep 2s && \
-tint2 \
-) &
 
+# Load resources
+xrdb .Xresources &
 nitrogen --restore &
 volumeicon &
 ## cbatticon &
 ## conky &
-sleep 1s &
 xcompmgr &
-sh /home/daniel/Desktop/trackpad.sh &
+sleep 1s &
+urxvtd -q -f -o &
+sh /home/daniel/.scripts/mouse/trackpad.sh
 gnome-screensaver &
 tint2 &

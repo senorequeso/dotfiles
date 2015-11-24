@@ -32,7 +32,8 @@ syntax on
 " Change colorscheme
 set background=dark
 set t_Co=256
-colorscheme solarized
+colorscheme ryuuko
+" colorscheme solarized
  
 " Vim with default settings does not allow easy switching between multiple files
 " in the same editor window. Users can use multiple split windows or multiple

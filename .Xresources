@@ -2,21 +2,19 @@
 
 URxvt*scrollBar: false
 ! URxvt*font: xft:Terminus:size=9,xft:Inconsolata\ for\ Powerline:size=9
-URxvt*font: xft:Consolas:size=9, xft:Inconsolata for Powerline
-URxvt
+URxvt*font: xft:Consolas:size=10, xft:Inconsolata for Powerline
 *geometry: 75x24
-xterm*termName: xterm-256color
+xterm*termName: URxvt-256color
 
 URxvt.scrollBar: false
 URxvt*loginShell: true
 URxvt.internalBorder: 6
 
-! Enables copy/paste
+URxvt.keysym.Shift-Control-V: perl:clipboard:paste
 URxvt.iso14755: False
-URxvt.perl-ext-common: clipboard
-URxvt.keysym.Shift-Control-C:   perl:clipboard:copy
-URxvt.keysym.Shift-Control-V:   perl:clipboard:paste
-URxvt.keysym.M-C-v: perl:clipboard:paste_escaped
+URxvt.perl-ext-common: default,clipboard
+URxvt.depth: 32
+URxvt.background: [95]#073642
 
 ! xterm ----------------------------------------------------------------------
 
