@@ -9,14 +9,18 @@ Plugin 'scrooloose/nerdtree.git'
 Plugin 'scrooloose/syntastic.git'
 Plugin 'tpope/vim-fugitive.git'
 Plugin 'kien/ctrlp.vim'
-"Plugin 'bling/vim-airline.git'
+Plugin 'chriskempson/base16-vim.git'
+Plugin 'bling/vim-airline.git'
+" Plugin 'Valloric/YouCompleteMe.git'
 
-"call vundle#end()
-filetype plugin indent on
+"call vundle#end()                
+filetype plugin indent on         
 
-set rtp+=/usr/lib/python3.5/site-packages/powerline/bindings/vim
+" set rtp+=/usr/lib/python3.5/site-packages/powerline/bindings/vim
 
 "---------------------------FEATURES---------------------------------
+"
+let g:syntastic_python_python_exec = '/usr/bin/python2'
 " Set 'nocompatible' to ward off unexpected things that your distro might
 " have made, as well as sanely reset options when re-sourcing .vimrc
 set nocompatible
@@ -32,8 +36,9 @@ syntax on
 " Change colorscheme
 set background=dark
 set t_Co=256
-colorscheme ryuuko
-" colorscheme solarized
+" colorscheme base16-ocean
+"colorscheme solarized
+colorscheme onedark
  
 " Vim with default settings does not allow easy switching between multiple files
 " in the same editor window. Users can use multiple split windows or multiple
@@ -118,8 +123,9 @@ set notimeout ttimeout ttimeoutlen=200
 set pastetoggle=<F11>
  
 "-----------------------------INDENTATION SETTINGS--------------------------------
-" If we're working with a Python file, expand tabs to 4 spaces
+" If we're working with a Python, Haskell file, expand tabs to 4 spaces
 au FileType python setlocal tabstop=4 expandtab shiftwidth=4 softtabstop=4
+au FileType haskell setlocal tabstop=4 expandtab shiftwidth=4 softtabstop=4
 
 " Indentation settings for using 4 spaces instead of tabs.
 " Do not change 'tabstop' from its default value of 8 with this setup.
