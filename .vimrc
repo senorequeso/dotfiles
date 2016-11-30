@@ -2,34 +2,33 @@
 set rtp+=~/.vim/bundle/Vundle.vim
 
 " All plugins must be called between begin/end
-call vundle#rc()
-
-" Plugin manager
-Plugin 'VundleVim/Vundle.vim'
+call plug#begin()
 
 " File browser
-Plugin 'scrooloose/nerdtree.git'
+Plug 'scrooloose/nerdtree'
 
 " Linters
-Plugin 'scrooloose/syntastic.git'
-Plugin 'neomake/neomake.git'
+Plug 'scrooloose/syntastic'
+Plug 'neomake/neomake'
 
-"Git 
-Plugin 'tpope/vim-fugitive.git'
+" VCS 
+Plug 'tpope/vim-fugitive'
 
 " Fuzzy search
-Plugin 'kien/ctrlp.vim'
+Plug 'ctrlpvim/ctrlp.vim'
 
 " Bling bling
-Plugin 'bling/vim-airline.git'
-Plugin 'airblade/vim-gitgutter'
-" Plugin 'Valloric/YouCompleteMe.git'
+Plug 'bling/vim-airline'
+Plug 'airblade/vim-gitgutter'
+Plug 'https://github.com/vim-scripts/vim-svngutter'
+Plug 'mhinz/vim-signify'
 
 " Autocomplete
-Plugin 'Shougo/deoplete.nvim'
-Plugin 'zchee/deoplete-jedi'
+Plug 'Shougo/deoplete.nvim'
+Plug 'zchee/deoplete-jedi'
 
-"call vundle#end()                
+call plug#end()
+
 filetype plugin indent on         
 
 " set rtp+=/usr/lib/python3.5/site-packages/powerline/bindings/vim
@@ -39,7 +38,10 @@ filetype plugin indent on
 let g:syntastic_python_python_exec = '/usr/bin/python2'
 let g:deoplete#enable_at_startup = 1
 
-autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
+" deoplete settings
+" autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
+" autocmd CompleteDone * pclose
+inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 
 " Set 'nocompatible' to ward off unexpected things that your distro might
 " have made, as well as sanely reset options when re-sourcing .vimrc
