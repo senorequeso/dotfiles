@@ -4,14 +4,30 @@ set rtp+=~/.vim/bundle/Vundle.vim
 " All plugins must be called between begin/end
 call vundle#rc()
 
+" Plugin manager
 Plugin 'VundleVim/Vundle.vim'
+
+" File browser
 Plugin 'scrooloose/nerdtree.git'
+
+" Linters
 Plugin 'scrooloose/syntastic.git'
+Plugin 'neomake/neomake.git'
+
+"Git 
 Plugin 'tpope/vim-fugitive.git'
+
+" Fuzzy search
 Plugin 'kien/ctrlp.vim'
-Plugin 'chriskempson/base16-vim.git'
+
+" Bling bling
 Plugin 'bling/vim-airline.git'
+Plugin 'airblade/vim-gitgutter'
 " Plugin 'Valloric/YouCompleteMe.git'
+
+" Autocomplete
+Plugin 'Shougo/deoplete.nvim'
+Plugin 'zchee/deoplete-jedi'
 
 "call vundle#end()                
 filetype plugin indent on         
@@ -21,6 +37,10 @@ filetype plugin indent on
 "---------------------------FEATURES---------------------------------
 "
 let g:syntastic_python_python_exec = '/usr/bin/python2'
+let g:deoplete#enable_at_startup = 1
+
+autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
+
 " Set 'nocompatible' to ward off unexpected things that your distro might
 " have made, as well as sanely reset options when re-sourcing .vimrc
 set nocompatible
@@ -175,6 +195,27 @@ map Y y$
 " Map <C-L> (redraw screen) to also turn off search highlighting until the
 " next search
 " nnoremap <C-/> :nohl<CR><C-L>
+
+" Escape will exit to Normal mode in terminals
+tnoremap <Esc> <C-\><C-n>
+
+" Navigate windows whether in a term or the editor with alt+hjkl
+tnoremap <A-h> <C-\><C-n><C-w>h
+tnoremap <A-j> <C-\><C-n><C-w>j
+tnoremap <A-k> <C-\><C-n><C-w>k
+tnoremap <A-l> <C-\><C-n><C-w>l
+nnoremap <A-h> <C-w>h
+nnoremap <A-j> <C-w>j
+nnoremap <A-k> <C-w>k
+nnoremap <A-l> <C-w>l
+
+" Tab navigation like Firefox.
+nnoremap <C-S-tab> :tabprevious<CR>
+nnoremap <C-tab>   :tabnext<CR>
+nnoremap <C-t>     :tabnew<CR>
+inoremap <C-S-tab> <Esc>:tabprevious<CR>i
+inoremap <C-tab>   <Esc>:tabnext<CR>i
+inoremap <C-t>     <Esc>:tabnew<CR>
 
 " Search ignores case unless using capital letters
 set ignorecase
