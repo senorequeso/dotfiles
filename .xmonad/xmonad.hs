@@ -54,9 +54,9 @@ myFocusFollowsMouse = False
 myWorkspaces    = ["1:main","2:chat","3:term","4:settings","5:misc"]
 -- Dzen/Conky
 myXmonadBar = "dzen2 -x '0' -y '0' -h '24' -w '640' -ta 'l' -fg '#FFFFFF' -bg '#1B1D1E'"
-myStatusBar = "conky -c /home/daniel/.xmonad/.conky_dzen | dzen2 -x '650' -w '1040' -h '24' -ta 'r' -bg '#1B1D1E' -fg '#FFFFFF' -y '0'"
+myStatusBar = "conky -c /home/dan/.xmonad/.conky_dzen | dzen2 -x '650' -w '1040' -h '24' -ta 'r' -bg '#1B1D1E' -fg '#FFFFFF' -y '0'"
 --myStatusBar = "conky -c /home/daniel/.xmonad/.conky_dzen | dzen2 -x '2080' -w '1040' -h '24' -ta 'r' -bg '#1B1D1E' -fg '#FFFFFF' -y '0'"
-myBitmapsDir = "/home/daniel/.xmonad/dzen2"
+myBitmapsDir = "/home/dan/.xmonad/dzen2"
 --}}}
 -- Main {{{
 main = do
@@ -107,7 +107,7 @@ manageHook' = (composeAll . concat $
         myMusic	  = ["Rhythmbox","Spotify"]
         myChat	  = ["Pidgin","Buddy List", "Psi", "Psi+", "chat", "psi"]
         myGimp	  = ["Gimp"]
-        myDev	  = ["gnome-terminal"]
+        myDev	  = ["termite"]
         myVim	  = ["Gvim"]
 
         -- resources
