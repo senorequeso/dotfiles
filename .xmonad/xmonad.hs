@@ -267,4 +267,3 @@ keys' conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
         , (f, m) <- [(W.view, 0), (W.shift, shiftMask)]]
 
 --}}}
--- vim:foldmethod=marker sw=4 sts=4 ts=4 tw=0 et ai nowrap
