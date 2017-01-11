@@ -43,7 +43,7 @@ import qualified Data.Map as M
 
 -- Config {{{
 -- Define Terminal
-myTerminal      = "gnome-terminal"
+myTerminal      = "termite"
 -- Define modMask
 modMask' :: KeyMask
 modMask' = mod4Mask
@@ -51,11 +51,10 @@ modMask' = mod4Mask
 myFocusFollowsMouse :: Bool
 myFocusFollowsMouse = False
 -- Define workspaces
-myWorkspaces    = ["1:main","2:chat","3:term","4:settings","5:misc"]
+myWorkspaces    = ["1","2","3","4","5","6","7","8","9"]
 -- Dzen/Conky
-myXmonadBar = "dzen2 -x '0' -y '0' -h '24' -w '640' -ta 'l' -fg '#FFFFFF' -bg '#1B1D1E'"
-myStatusBar = "conky -c /home/dan/.xmonad/.conky_dzen | dzen2 -x '650' -w '1040' -h '24' -ta 'r' -bg '#1B1D1E' -fg '#FFFFFF' -y '0'"
---myStatusBar = "conky -c /home/daniel/.xmonad/.conky_dzen | dzen2 -x '2080' -w '1040' -h '24' -ta 'r' -bg '#1B1D1E' -fg '#FFFFFF' -y '0'"
+myXmonadBar = "dzen2 -x '0' -y '0' -h '24' -ta 'l' -fg '#FFFFFF' -bg '#1B1D1E' -xs 1"
+myStatusBar = "conky -c /home/dan/.xmonad/.conky_dzen | dzen2 -x '650' -h '24' -ta 'r' -bg '#1B1D1E' -fg '#FFFFFF' -y '0' -xs 1"
 myBitmapsDir = "/home/dan/.xmonad/dzen2"
 --}}}
 -- Main {{{
@@ -87,7 +86,7 @@ manageHook' = (composeAll . concat $
     , [className    =? c            --> doShift  "1:main"   |   c   <- myDev    ] -- move dev to main
     , [className    =? c            --> doShift  "2:web"    |   c   <- myWebs   ] -- move webs to main
     , [className    =? c            --> doShift  "3:vim"    |   c   <- myVim    ] -- move webs to main
-    , [className    =? c            --> doShift	 "4:chat"   |   c   <- myChat   ] -- move chat to chat
+    , [className    =? c            --> doShift  "4:chat"   |   c   <- myChat   ] -- move chat to chat
     , [className    =? c            --> doShift  "5:music"  |   c   <- myMusic  ] -- move music to music
     , [className    =? c            --> doShift  "6:gimp"   |   c   <- myGimp   ] -- move img to div
     , [className    =? c            --> doCenterFloat       |   c   <- myFloats ] -- float my floats
@@ -104,11 +103,11 @@ manageHook' = (composeAll . concat $
         myFloats  = ["Smplayer","MPlayer","VirtualBox","Xmessage","XFontSel","Downloads","Nm-connection-editor"]
         myWebs    = ["Firefox","Google-chrome","Chromium", "Chromium-browser"]
         myMovie   = ["Boxee","Trine"]
-        myMusic	  = ["Rhythmbox","Spotify"]
-        myChat	  = ["Pidgin","Buddy List", "Psi", "Psi+", "chat", "psi"]
-        myGimp	  = ["Gimp"]
-        myDev	  = ["termite"]
-        myVim	  = ["Gvim"]
+        myMusic   = ["Rhythmbox","Spotify"]
+        myChat    = ["Pidgin","Buddy List", "Psi", "Psi+", "chat", "psi"]
+        myGimp    = ["Gimp"]
+        myDev     = ["termite"]
+        myVim     = ["Gvim"]
 
         -- resources
         myIgnores = ["desktop","desktop_window","notify-osd","stalonetray","trayer"]
@@ -210,18 +209,16 @@ keys' conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
     , ((modMask .|. shiftMask,      xK_c        ), kill)
     , ((modMask .|. shiftMask,      xK_l        ), spawn "slock")
     -- Programs
-    , ((0,                          xK_Print    ), spawn "scrot -e 'mv $f ~Pictures/screenshots/'")
-    , ((modMask,		            xK_o        ), spawn "chromium-browser")
+    , ((0,                          xK_Print    ), spawn "scrot -e 'mv $f ~pictures/screenshots/'")
+    , ((0 .|. shiftMask,            xK_Print    ), spawn "scrot -s 'mv $f ~pictures/screenshots/'")
+    , ((modMask,                    xK_o        ), spawn "chromium-browser")
     , ((modMask,                    xK_m        ), spawn "nautilus --no-desktop --browser")
     , ((modMask,                    xK_z        ), spawn "dmenu_run")
+    , ((modMask .|. shiftMask,      xK_l        ), spawn "xscreensaver-command --lock")
     -- Media Keys
     , ((0,                          0x1008ff12  ), spawn "amixer -q sset Headphone toggle")        -- XF86AudioMute
     , ((0,                          0x1008ff11  ), spawn "amixer -q sset Headphone 5%-")   -- XF86AudioLowerVolume
     , ((0,                          0x1008ff13  ), spawn "amixer -q sset Headphone 5%+")   -- XF86AudioRaiseVolume
-    -- , ((0,                          0x1008ff14  ), spawn "rhythmbox-client --play-pause")
-    -- , ((0,                          0x1008ff17  ), spawn "rhythmbox-client --next")
-    -- , ((0,                          0x1008ff16  ), spawn "rhythmbox-client --previous")
-
     -- layouts
     , ((modMask,                    xK_space    ), sendMessage NextLayout)
     , ((modMask .|. shiftMask,      xK_space    ), setLayout $ XMonad.layoutHook conf)          -- reset layout on current desktop to default

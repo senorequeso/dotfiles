@@ -27,6 +27,10 @@ Plug 'mhinz/vim-signify'
 Plug 'Shougo/deoplete.nvim'
 Plug 'zchee/deoplete-jedi'
 
+" Tags?
+" Plug 'fntlnz/atags.vim'
+Plug 'ludovicchabant/vim-gutentags'
+
 call plug#end()
 
 filetype plugin indent on         
@@ -37,6 +41,8 @@ filetype plugin indent on
 "
 let g:syntastic_python_python_exec = '/usr/bin/python2'
 let g:deoplete#enable_at_startup = 1
+
+" autocmd BufWritePost * call atags#generate()
 
 " deoplete settings
 " autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
@@ -167,6 +173,12 @@ let mapleader = ','
 
 nmap <silent> <leader>k :NERDTreeToggle<cr>
 nmap <silent> <leader>y :NERDTreeFind<cr>
+
+" Generate tags with <Leader>T
+set statusline+=%{gutentags#statusline()}
+
+" map <Leader>t :call atags#generate()<cr>
+
 
 " Map C-hjkl to winmove
 
