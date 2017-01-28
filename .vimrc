@@ -31,6 +31,14 @@ Plug 'zchee/deoplete-jedi'
 " Plug 'fntlnz/atags.vim'
 Plug 'ludovicchabant/vim-gutentags'
 
+" Language spcific
+" Clojure
+Plug 'tpope/vim-fireplace'
+Plug 'guns/vim-clojure-static'
+Plug 'tpope/vim-classpath'
+" Plug 'vim-scripts/paredit.vim'
+Plug 'kien/rainbow_parentheses.vim'
+
 call plug#end()
 
 filetype plugin indent on         
