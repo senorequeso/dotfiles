@@ -179,6 +179,10 @@ set pastetoggle=<F11>
 au FileType python setlocal tabstop=4 expandtab shiftwidth=4 softtabstop=4
 au FileType haskell setlocal tabstop=4 expandtab shiftwidth=4 softtabstop=4
 
+" In python, highlight tabs (wow this will get annoying if I read a file with
+" tab indentation...)
+au FileType python setlocal list listchars=tab:>.,trail:.,extends:#,nbsp:.
+
 " Indentation settings for using 4 spaces instead of tabs.
 " Do not change 'tabstop' from its default value of 8 with this setup.
 set shiftwidth=4
