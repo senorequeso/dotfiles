@@ -8,7 +8,7 @@ call plug#begin()
 Plug 'scrooloose/nerdtree'
 
 " Linters
-Plug 'scrooloose/syntastic'
+" Plug 'scrooloose/syntastic'
 Plug 'neomake/neomake'
 
 " VCS 
@@ -26,10 +26,11 @@ Plug 'mhinz/vim-signify'
 " Autocomplete
 Plug 'Shougo/deoplete.nvim'
 Plug 'zchee/deoplete-jedi'
+Plug 'tpope/vim-surround'
 
 " Tags?
 " Plug 'fntlnz/atags.vim'
-Plug 'ludovicchabant/vim-gutentags'
+"Plug 'ludovicchabant/vim-gutentags'
 
 " Language spcific
 " Clojure
@@ -47,8 +48,10 @@ filetype plugin indent on
 
 "---------------------------FEATURES---------------------------------
 "
-let g:syntastic_python_python_exec = '/usr/bin/python2'
+" let g:syntastic_python_python_exec = '/usr/bin/python2'
 let g:deoplete#enable_at_startup = 1
+autocmd! BufWritePost * Neomake
+
 
 " autocmd BufWritePost * call atags#generate()
 
@@ -90,6 +93,16 @@ if (empty($TMUX))
   if (has("termguicolors"))
     set termguicolors
   endif
+endif
+
+" Reduce delay with airline in NVIMa
+if ! has('gui_running')
+    set ttimeoutlen=10
+    augroup FastEscape
+        autocmd!
+        au InsertEnter * set timeoutlen=0
+        au InsertLeave * set timeoutlen=1000
+    augroup END
 endif
  
 " Vim with default settings does not allow easy switching between multiple files
@@ -178,6 +191,7 @@ set pastetoggle=<F11>
 " If we're working with a Python, Haskell file, expand tabs to 4 spaces
 au FileType python setlocal tabstop=4 expandtab shiftwidth=4 softtabstop=4
 au FileType haskell setlocal tabstop=4 expandtab shiftwidth=4 softtabstop=4
+au FileType markdown setlocal tabstop=4 expandtab shiftwidth=4 softtabstop=4
 
 " In python, highlight tabs (wow this will get annoying if I read a file with
 " tab indentation...)
@@ -203,7 +217,7 @@ nmap <silent> <leader>k :NERDTreeToggle<cr>
 nmap <silent> <leader>y :NERDTreeFind<cr>
 
 " Generate tags with <Leader>T
-set statusline+=%{gutentags#statusline()}
+" set statusline+=%{gutentags#statusline()}
 
 " map <Leader>t :call atags#generate()<cr>
 
