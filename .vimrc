@@ -31,12 +31,18 @@ Plug 'tpope/vim-surround'
 " Tags?
 " Plug 'fntlnz/atags.vim'
 "Plug 'ludovicchabant/vim-gutentags'
-
+Plug 'mileszs/ack.vim'
 " Language spcific
 " Clojure
 Plug 'tpope/vim-fireplace'
 Plug 'guns/vim-clojure-static'
 Plug 'tpope/vim-classpath'
+Plug 'luochen1990/rainbow'
+
+" JSX and React
+Plug 'pangloss/vim-javascript'
+" Plug 'mxw/vim-jsx'
+
 " Plug 'vim-scripts/paredit.vim'
 Plug 'kien/rainbow_parentheses.vim'
 
@@ -51,6 +57,8 @@ filetype plugin indent on
 " let g:syntastic_python_python_exec = '/usr/bin/python2'
 let g:deoplete#enable_at_startup = 1
 autocmd! BufWritePost * Neomake
+
+let g:jsx_ext_required = 0 " Allow JSX in normal JS files
 
 
 " autocmd BufWritePost * call atags#generate()
@@ -192,6 +200,7 @@ set pastetoggle=<F11>
 au FileType python setlocal tabstop=4 expandtab shiftwidth=4 softtabstop=4
 au FileType haskell setlocal tabstop=4 expandtab shiftwidth=4 softtabstop=4
 au FileType markdown setlocal tabstop=4 expandtab shiftwidth=4 softtabstop=4
+au FileType javascript setlocal tabstop=2 expandtab shiftwidth=2 softtabstop=2
 
 " In python, highlight tabs (wow this will get annoying if I read a file with
 " tab indentation...)
@@ -272,6 +281,8 @@ nnoremap <C-t>     :tabnew<CR>
 inoremap <C-S-tab> <Esc>:tabprevious<CR>i
 inoremap <C-tab>   <Esc>:tabnext<CR>i
 inoremap <C-t>     <Esc>:tabnew<CR>
+
+let g:rainbow_active = 1 "0 if you want to enable it later via :RainbowToggle
 
 " Search ignores case unless using capital letters
 set ignorecase
