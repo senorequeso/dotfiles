@@ -42,6 +42,7 @@ Plug 'luochen1990/rainbow'
 
 " Go
 Plug 'fatih/vim-go'
+Plug 'zchee/deoplete-go', {'build': {'unix': 'make'}}
 
 " JSX and React
 Plug 'pangloss/vim-javascript'
