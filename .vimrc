@@ -32,12 +32,16 @@ Plug 'tpope/vim-surround'
 " Plug 'fntlnz/atags.vim'
 "Plug 'ludovicchabant/vim-gutentags'
 Plug 'mileszs/ack.vim'
+
 " Language spcific
 " Clojure
 Plug 'tpope/vim-fireplace'
 Plug 'guns/vim-clojure-static'
 Plug 'tpope/vim-classpath'
 Plug 'luochen1990/rainbow'
+
+" Go
+Plug 'fatih/vim-go'
 
 " JSX and React
 Plug 'pangloss/vim-javascript'
