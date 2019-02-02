@@ -2,14 +2,26 @@
 local gears = require("gears")
 local awful = require("awful")
 require("awful.autofocus")
+
 -- Widget and layout library
 local wibox = require("wibox")
+
 -- Theme handling library
 local beautiful = require("beautiful")
+
 -- Notification library
 local naughty = require("naughty")
 local menubar = require("menubar")
 local hotkeys_popup = require("awful.hotkeys_popup").widget
+
+-- local volume_widget = require("awesome-wm-widgets.volume-widget.volume")
+local volume_control = require("volume-control")
+
+-- titlebars
+local titlebars = require("titlebars")
+
+-- keybinds
+local keybinds = dofile("keybinds.lua")
 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
@@ -117,6 +129,7 @@ mykeyboardlayout = awful.widget.keyboardlayout()
 -- Create a textclock widget
 mytextclock = wibox.widget.textclock()
 
+
 -- Create a wibox for each screen and add it
 local taglist_buttons = awful.util.table.join(
                     awful.button({ }, 1, function(t) t:view_only() end),
@@ -175,6 +188,10 @@ end
 -- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
 screen.connect_signal("property::geometry", set_wallpaper)
 
+-- init volume control
+volumecfg = volume_control({device="pulse"})
+
+
 awful.screen.connect_for_each_screen(function(s)
     -- Wallpaper
     set_wallpaper(s)
@@ -213,10 +230,13 @@ awful.screen.connect_for_each_screen(function(s)
         s.mytasklist, -- Middle widget
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
-            mykeyboardlayout,
+            -- mykeyboardlayout,
             wibox.widget.systray(),
             mytextclock,
-            s.mylayoutbox,
+			-- volume_widget,
+			volumecfg.widget,
+			require("battery-widget") {},
+            s.mylayoutbox
         },
     }
 end)
@@ -328,7 +348,17 @@ globalkeys = awful.util.table.join(
               {description = "lua execute prompt", group = "awesome"}),
     -- Menubar
     awful.key({ modkey }, "p", function() menubar.show() end,
-              {description = "show the menubar", group = "launcher"})
+              {description = "show the menubar", group = "launcher"}),
+
+	-- volume controls
+	awful.key({}, "XF86AudioRaiseVolume", function() volumecfg:up() end),
+    awful.key({}, "XF86AudioLowerVolume", function() volumecfg:down() end),
+    awful.key({}, "XF86AudioMute",        function() volumecfg:toggle() end),
+
+	-- backlight controls
+	awful.key({}, "XF86MonBrightnessUp", function() awful.spawn("xbacklight +10") end),
+    awful.key({}, "XF86MonBrightnessDown", function() awful.spawn("xbacklight -10") end)
+
 )
 
 clientkeys = awful.util.table.join(
