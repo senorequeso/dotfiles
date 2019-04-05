@@ -20,9 +20,6 @@ local volume_control = require("volume-control")
 -- titlebars
 local titlebars = require("titlebars")
 
--- keybinds
-local keybinds = dofile("keybinds.lua")
-
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
 -- another config (This code will only ever execute for the fallback config)

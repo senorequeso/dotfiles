@@ -86,7 +86,7 @@ filetype indent plugin on
 syntax on
 
 " Change colorscheme
-set background=dark
+set background=light
 set t_Co=256
 " colorscheme base16-ocean
 "colorscheme solarized
@@ -206,6 +206,7 @@ au FileType python setlocal tabstop=4 expandtab shiftwidth=4 softtabstop=4
 au FileType haskell setlocal tabstop=4 expandtab shiftwidth=4 softtabstop=4
 au FileType markdown setlocal tabstop=4 expandtab shiftwidth=4 softtabstop=4
 au FileType javascript setlocal tabstop=2 expandtab shiftwidth=2 softtabstop=2
+au FileType yaml setlocal tabstop=2 expandtab shiftwidth=2 softtabstop=2
 
 " In python, highlight tabs (wow this will get annoying if I read a file with
 " tab indentation...)

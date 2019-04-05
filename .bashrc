@@ -18,7 +18,15 @@ alias vim="nvim"
 
 export EDITOR="vim"
 export TERM="screen-256color"
+export TerminalEmulator="termite"
 
 if [ -f ~/usr/lib/python3.5/site-packages/powerline/bindings/bash/powerline.sh ]; then
 	    source ~/usr/lib/python3.5/site-packages/powerline/bindings/bash/powerline.sh
 fi
+
+export PATH=$PATH:/home/daniel/.local/bin
+# work
+alias ns="kubectl config set-context \$(kubectl config current-context) --namespace"
+
+PS1='[\u@\h \W]\$ '
+
